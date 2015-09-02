@@ -4,14 +4,34 @@
   <!-- require angular -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script>
+  // create the FriendFactory
+friends_app.factory('FriendFactory', function() {
+  var factory = {};
+  var friends = [];
+  factory.getFriends = function() {
+    return friends;
+  };
+  // note the use of callbacks!
+  factory.addFriend = function(info, callback) {
+    friends.push({name: info.name, age: info.age});
+    callback(friends);
+  };
+  return factory;
+});
   // Lets create our angular module
 var friends_app = angular.module('friends_app', []);
 // Now lets create a controller with some hardcoded data!
-friends_app.controller('FriendsController', function($scope) {
+friends_app.controller('FriendsController', function($scope, FriendFactory) {
   $scope.friends = [{name: "Michael", age: 34}, {name: "Andrew", age: 24}];
+  $scope.friends = FriendFactory.getFriends();
   $scope.addfriend = function() {
-    $scope.friends.push({name: $scope.new_friend.name, age: $scope.new_friend.age});
+   $scope.addfriend = function() {
+  // note the use of callbacks here
+  FriendFactory.addFriend($scope.new_friend, function() {
+    $scope.friends = FriendFactory.getFriends();
     $scope.new_friend = {};
+  });
+};
   };
 });
   </script>
