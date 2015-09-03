@@ -3,6 +3,6 @@
   // We will have to require this in the server.js file (and pass it app!)
   module.exports = function(app) {
     app.get('/friends', function(req, res) {
-      res.json([{name: "Andrew", age: 24}, {name: "Michael", age: 34}]);
+      res.json([{name: "ilan", age: 99}, {name: "fabrice", age: 33}]);
     });
   };
