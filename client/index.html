@@ -4,6 +4,8 @@
   <!-- require angular -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script>
+     // Lets create our angular module
+  var friends_app = angular.module('friends_app', []);
     // create the FriendFactory
   friends_app.factory('FriendFactory', function() {
     var factory = {};
@@ -18,8 +20,7 @@
     };
     return factory;
   });
-    // Lets create our angular module
-  var friends_app = angular.module('friends_app', []);
+ 
   // Now lets create a controller with some hardcoded data!
   friends_app.controller('FriendsController', function($scope, FriendFactory) {
     $scope.friends = [{name: "Michael", age: 34}, {name: "Andrew", age: 24}];
